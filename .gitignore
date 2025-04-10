@@ -5,6 +5,8 @@
 ## User settings
 xcuserdata/
 
+/Lexicon/Lexicon/GoogleService-Info.plist
+
 ## Obj-C/Swift specific
 *.hmap
 
@@ -60,3 +62,6 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+Lexicon/Lexicon/GoogleService-Info.plist
+Lexicon/Lexicon/GoogleService-Info.plist
+Lexicon/Lexicon/GoogleService-Info.plist

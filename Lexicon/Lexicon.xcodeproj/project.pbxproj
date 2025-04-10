@@ -1,0 +1,934 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3A5CA8B22DA32EF600DA6C93 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 3A5CA8B12DA32EF600DA6C93 /* FirebaseStorage */; };
+		3A5CA8B42DA32EF600DA6C93 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 3A5CA8B32DA32EF600DA6C93 /* FirebaseStorageCombine-Community */; };
+		3AD0721E2D98762B000D37FB /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 3AD0721D2D98762B000D37FB /* FirebaseAuth */; };
+		3ADEEA4E2DA09C4D009241E4 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ADEEA4D2DA09C4C009241E4 /* TestView.swift */; };
+		3AF2E1792D99FB30006C5787 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 3AF2E1782D99FB30006C5787 /* FirebaseFirestore */; };
+		3AF2E17B2D99FB30006C5787 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 3AF2E17A2D99FB30006C5787 /* FirebaseFirestoreCombine-Community */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3AD071F82D98679B000D37FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AD071DF2D986799000D37FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AD071E62D986799000D37FB;
+			remoteInfo = Lexicon;
+		};
+		3AD072022D98679B000D37FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AD071DF2D986799000D37FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AD071E62D986799000D37FB;
+			remoteInfo = Lexicon;
+		};
+		3AF2E1472D99A932006C5787 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AD071DF2D986799000D37FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AF2E1352D99A92F006C5787;
+			remoteInfo = "Lexicon-mac";
+		};
+		3AF2E1512D99A932006C5787 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3AD071DF2D986799000D37FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3AF2E1352D99A92F006C5787;
+			remoteInfo = "Lexicon-mac";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3AD071E72D986799000D37FB /* Lexicon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lexicon.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AD071F72D98679B000D37FB /* LexiconTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LexiconTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AD072012D98679B000D37FB /* LexiconUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LexiconUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3ADEEA4D2DA09C4C009241E4 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		3AF2E1362D99A92F006C5787 /* Lexicon-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lexicon-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AF2E1462D99A932006C5787 /* Lexicon-macTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lexicon-macTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AF2E1502D99A932006C5787 /* Lexicon-macUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lexicon-macUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		3AD071E92D986799000D37FB /* Lexicon */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Lexicon;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3AD071E42D986799000D37FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3AF2E17B2D99FB30006C5787 /* FirebaseFirestoreCombine-Community in Frameworks */,
+				3A5CA8B22DA32EF600DA6C93 /* FirebaseStorage in Frameworks */,
+				3A5CA8B42DA32EF600DA6C93 /* FirebaseStorageCombine-Community in Frameworks */,
+				3AD0721E2D98762B000D37FB /* FirebaseAuth in Frameworks */,
+				3AF2E1792D99FB30006C5787 /* FirebaseFirestore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AD071F42D98679B000D37FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AD071FE2D98679B000D37FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AF2E1332D99A92F006C5787 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AF2E1432D99A932006C5787 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AF2E14D2D99A932006C5787 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3AD071DE2D986799000D37FB = {
+			isa = PBXGroup;
+			children = (
+				3ADEEA4D2DA09C4C009241E4 /* TestView.swift */,
+				3AD071E92D986799000D37FB /* Lexicon */,
+				3AD071E82D986799000D37FB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3AD071E82D986799000D37FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3AD071E72D986799000D37FB /* Lexicon.app */,
+				3AD071F72D98679B000D37FB /* LexiconTests.xctest */,
+				3AD072012D98679B000D37FB /* LexiconUITests.xctest */,
+				3AF2E1362D99A92F006C5787 /* Lexicon-mac.app */,
+				3AF2E1462D99A932006C5787 /* Lexicon-macTests.xctest */,
+				3AF2E1502D99A932006C5787 /* Lexicon-macUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3AD071E62D986799000D37FB /* Lexicon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AD0720B2D98679B000D37FB /* Build configuration list for PBXNativeTarget "Lexicon" */;
+			buildPhases = (
+				3AD071E32D986799000D37FB /* Sources */,
+				3AD071E42D986799000D37FB /* Frameworks */,
+				3AD071E52D986799000D37FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				3AD071E92D986799000D37FB /* Lexicon */,
+			);
+			name = Lexicon;
+			packageProductDependencies = (
+				3AD0721D2D98762B000D37FB /* FirebaseAuth */,
+				3AF2E1782D99FB30006C5787 /* FirebaseFirestore */,
+				3AF2E17A2D99FB30006C5787 /* FirebaseFirestoreCombine-Community */,
+				3A5CA8B12DA32EF600DA6C93 /* FirebaseStorage */,
+				3A5CA8B32DA32EF600DA6C93 /* FirebaseStorageCombine-Community */,
+			);
+			productName = Lexicon;
+			productReference = 3AD071E72D986799000D37FB /* Lexicon.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3AD071F62D98679B000D37FB /* LexiconTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AD0720E2D98679B000D37FB /* Build configuration list for PBXNativeTarget "LexiconTests" */;
+			buildPhases = (
+				3AD071F32D98679B000D37FB /* Sources */,
+				3AD071F42D98679B000D37FB /* Frameworks */,
+				3AD071F52D98679B000D37FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AD071F92D98679B000D37FB /* PBXTargetDependency */,
+			);
+			name = LexiconTests;
+			packageProductDependencies = (
+			);
+			productName = LexiconTests;
+			productReference = 3AD071F72D98679B000D37FB /* LexiconTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3AD072002D98679B000D37FB /* LexiconUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AD072112D98679B000D37FB /* Build configuration list for PBXNativeTarget "LexiconUITests" */;
+			buildPhases = (
+				3AD071FD2D98679B000D37FB /* Sources */,
+				3AD071FE2D98679B000D37FB /* Frameworks */,
+				3AD071FF2D98679B000D37FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AD072032D98679B000D37FB /* PBXTargetDependency */,
+			);
+			name = LexiconUITests;
+			packageProductDependencies = (
+			);
+			productName = LexiconUITests;
+			productReference = 3AD072012D98679B000D37FB /* LexiconUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		3AF2E1352D99A92F006C5787 /* Lexicon-mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AF2E15E2D99A932006C5787 /* Build configuration list for PBXNativeTarget "Lexicon-mac" */;
+			buildPhases = (
+				3AF2E1322D99A92F006C5787 /* Sources */,
+				3AF2E1332D99A92F006C5787 /* Frameworks */,
+				3AF2E1342D99A92F006C5787 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Lexicon-mac";
+			packageProductDependencies = (
+			);
+			productName = "Lexicon-mac";
+			productReference = 3AF2E1362D99A92F006C5787 /* Lexicon-mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3AF2E1452D99A932006C5787 /* Lexicon-macTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AF2E15F2D99A932006C5787 /* Build configuration list for PBXNativeTarget "Lexicon-macTests" */;
+			buildPhases = (
+				3AF2E1422D99A932006C5787 /* Sources */,
+				3AF2E1432D99A932006C5787 /* Frameworks */,
+				3AF2E1442D99A932006C5787 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AF2E1482D99A932006C5787 /* PBXTargetDependency */,
+			);
+			name = "Lexicon-macTests";
+			packageProductDependencies = (
+			);
+			productName = "Lexicon-macTests";
+			productReference = 3AF2E1462D99A932006C5787 /* Lexicon-macTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3AF2E14F2D99A932006C5787 /* Lexicon-macUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3AF2E1602D99A932006C5787 /* Build configuration list for PBXNativeTarget "Lexicon-macUITests" */;
+			buildPhases = (
+				3AF2E14C2D99A932006C5787 /* Sources */,
+				3AF2E14D2D99A932006C5787 /* Frameworks */,
+				3AF2E14E2D99A932006C5787 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3AF2E1522D99A932006C5787 /* PBXTargetDependency */,
+			);
+			name = "Lexicon-macUITests";
+			packageProductDependencies = (
+			);
+			productName = "Lexicon-macUITests";
+			productReference = 3AF2E1502D99A932006C5787 /* Lexicon-macUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3AD071DF2D986799000D37FB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					3AD071E62D986799000D37FB = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					3AD071F62D98679B000D37FB = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 3AD071E62D986799000D37FB;
+					};
+					3AD072002D98679B000D37FB = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 3AD071E62D986799000D37FB;
+					};
+					3AF2E1352D99A92F006C5787 = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					3AF2E1452D99A932006C5787 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 3AF2E1352D99A92F006C5787;
+					};
+					3AF2E14F2D99A932006C5787 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 3AF2E1352D99A92F006C5787;
+					};
+				};
+			};
+			buildConfigurationList = 3AD071E22D986799000D37FB /* Build configuration list for PBXProject "Lexicon" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3AD071DE2D986799000D37FB;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				3AD0721C2D98762B000D37FB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 3AD071E82D986799000D37FB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3AD071E62D986799000D37FB /* Lexicon */,
+				3AD071F62D98679B000D37FB /* LexiconTests */,
+				3AD072002D98679B000D37FB /* LexiconUITests */,
+				3AF2E1352D99A92F006C5787 /* Lexicon-mac */,
+				3AF2E1452D99A932006C5787 /* Lexicon-macTests */,
+				3AF2E14F2D99A932006C5787 /* Lexicon-macUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3AD071E52D986799000D37FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AD071F52D98679B000D37FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AD071FF2D98679B000D37FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AF2E1342D99A92F006C5787 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AF2E1442D99A932006C5787 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AF2E14E2D99A932006C5787 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3AD071E32D986799000D37FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3ADEEA4E2DA09C4D009241E4 /* TestView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AD071F32D98679B000D37FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AD071FD2D98679B000D37FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AF2E1322D99A92F006C5787 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AF2E1422D99A932006C5787 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3AF2E14C2D99A932006C5787 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3AD071F92D98679B000D37FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AD071E62D986799000D37FB /* Lexicon */;
+			targetProxy = 3AD071F82D98679B000D37FB /* PBXContainerItemProxy */;
+		};
+		3AD072032D98679B000D37FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AD071E62D986799000D37FB /* Lexicon */;
+			targetProxy = 3AD072022D98679B000D37FB /* PBXContainerItemProxy */;
+		};
+		3AF2E1482D99A932006C5787 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AF2E1352D99A92F006C5787 /* Lexicon-mac */;
+			targetProxy = 3AF2E1472D99A932006C5787 /* PBXContainerItemProxy */;
+		};
+		3AF2E1522D99A932006C5787 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3AF2E1352D99A92F006C5787 /* Lexicon-mac */;
+			targetProxy = 3AF2E1512D99A932006C5787 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3AD072092D98679B000D37FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3AD0720A2D98679B000D37FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3AD0720C2D98679B000D37FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Lexicon/Preview Content\"";
+				DEVELOPMENT_TEAM = 9647R7RL9Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayaangrover.Lexicon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3AD0720D2D98679B000D37FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Lexicon/Preview Content\"";
+				DEVELOPMENT_TEAM = 9647R7RL9Q;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayaangrover.Lexicon;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3AD0720F2D98679B000D37FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9647R7RL9Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayaangrover.LexiconTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lexicon.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lexicon";
+			};
+			name = Debug;
+		};
+		3AD072102D98679B000D37FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9647R7RL9Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayaangrover.LexiconTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lexicon.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lexicon";
+			};
+			name = Release;
+		};
+		3AD072122D98679B000D37FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9647R7RL9Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayaangrover.LexiconUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Lexicon;
+			};
+			name = Debug;
+		};
+		3AD072132D98679B000D37FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9647R7RL9Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ayaangrover.LexiconUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Lexicon;
+			};
+			name = Release;
+		};
+		3AF2E1582D99A932006C5787 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Lexicon-mac/Lexicon_mac.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Lexicon-mac/Preview Content\"";
+				DEVELOPMENT_TEAM = 9647R7RL9Q;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ayaangrover.Lexicon-mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		3AF2E1592D99A932006C5787 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Lexicon-mac/Lexicon_mac.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Lexicon-mac/Preview Content\"";
+				DEVELOPMENT_TEAM = 9647R7RL9Q;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ayaangrover.Lexicon-mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		3AF2E15A2D99A932006C5787 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9647R7RL9Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ayaangrover.Lexicon-macTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lexicon-mac.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lexicon-mac";
+			};
+			name = Debug;
+		};
+		3AF2E15B2D99A932006C5787 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9647R7RL9Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ayaangrover.Lexicon-macTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lexicon-mac.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Lexicon-mac";
+			};
+			name = Release;
+		};
+		3AF2E15C2D99A932006C5787 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9647R7RL9Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ayaangrover.Lexicon-macUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Lexicon-mac";
+			};
+			name = Debug;
+		};
+		3AF2E15D2D99A932006C5787 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9647R7RL9Q;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ayaangrover.Lexicon-macUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "Lexicon-mac";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3AD071E22D986799000D37FB /* Build configuration list for PBXProject "Lexicon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AD072092D98679B000D37FB /* Debug */,
+				3AD0720A2D98679B000D37FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3AD0720B2D98679B000D37FB /* Build configuration list for PBXNativeTarget "Lexicon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AD0720C2D98679B000D37FB /* Debug */,
+				3AD0720D2D98679B000D37FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3AD0720E2D98679B000D37FB /* Build configuration list for PBXNativeTarget "LexiconTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AD0720F2D98679B000D37FB /* Debug */,
+				3AD072102D98679B000D37FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3AD072112D98679B000D37FB /* Build configuration list for PBXNativeTarget "LexiconUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AD072122D98679B000D37FB /* Debug */,
+				3AD072132D98679B000D37FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3AF2E15E2D99A932006C5787 /* Build configuration list for PBXNativeTarget "Lexicon-mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AF2E1582D99A932006C5787 /* Debug */,
+				3AF2E1592D99A932006C5787 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3AF2E15F2D99A932006C5787 /* Build configuration list for PBXNativeTarget "Lexicon-macTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AF2E15A2D99A932006C5787 /* Debug */,
+				3AF2E15B2D99A932006C5787 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3AF2E1602D99A932006C5787 /* Build configuration list for PBXNativeTarget "Lexicon-macUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3AF2E15C2D99A932006C5787 /* Debug */,
+				3AF2E15D2D99A932006C5787 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3AD0721C2D98762B000D37FB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3A5CA8B12DA32EF600DA6C93 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AD0721C2D98762B000D37FB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		3A5CA8B32DA32EF600DA6C93 /* FirebaseStorageCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AD0721C2D98762B000D37FB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseStorageCombine-Community";
+		};
+		3AD0721D2D98762B000D37FB /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AD0721C2D98762B000D37FB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		3AF2E1782D99FB30006C5787 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AD0721C2D98762B000D37FB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		3AF2E17A2D99FB30006C5787 /* FirebaseFirestoreCombine-Community */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3AD0721C2D98762B000D37FB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreCombine-Community";
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 3AD071DF2D986799000D37FB /* Project object */;
+}
