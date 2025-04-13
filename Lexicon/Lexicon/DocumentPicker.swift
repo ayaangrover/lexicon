@@ -1,11 +1,3 @@
-//
-//  DocumentPicker.swift
-//  Lexicon
-//
-//  Created by Ayaan Grover on 4/6/25.
-//
-
-
 import SwiftUI
 import UniformTypeIdentifiers
 import UIKit

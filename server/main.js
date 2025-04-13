@@ -4,7 +4,6 @@ const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
 
-// Allow all origins to access this API
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -12,10 +11,8 @@ app.use(function (req, res, next) {
     next();
 });
 
-// Function to introduce a delay
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-// Fetch the HTML for a Quizlet set
 const getQuizletSet = async (url) => {
     const browser = await puppeteer.launch({
         headless: true,
@@ -54,12 +51,10 @@ const getQuizletSet = async (url) => {
         console.log("Checking reduxState.studyModesCommon:", JSON.stringify(reduxState.studyModesCommon, null, 2));
 
         let cards = [];
-        // Check branch: reduxState.setPage.cards (old structure)
         if (reduxState.setPage && Array.isArray(reduxState.setPage.cards)) {
             console.log("Using reduxState.setPage.cards branch");
             cards = reduxState.setPage.cards;
         }
-        // Check branch: studiableData.studiableItems
         else if (reduxState.studiableData && Array.isArray(reduxState.studiableData.studiableItems)) {
             console.log("Using reduxState.studiableData.studiableItems branch");
             cards = reduxState.studiableData.studiableItems.map(item => {
@@ -77,7 +72,6 @@ const getQuizletSet = async (url) => {
                 }
             });
         }
-        // Check branch: reduxState.studyModesCommon.studiableData.studiableItems
         else if (reduxState.studyModesCommon &&
             reduxState.studyModesCommon.studiableData &&
             Array.isArray(reduxState.studyModesCommon.studiableData.studiableItems)) {
@@ -85,7 +79,7 @@ const getQuizletSet = async (url) => {
             console.log("Found studiableItems in reduxState:", JSON.stringify(reduxState.studyModesCommon.studiableData.studiableItems, null, 2));
 
             cards = reduxState.studyModesCommon.studiableData.studiableItems.map(item => {
-                console.log("Processing item:", JSON.stringify(item, null, 2)); // Log each item for debugging
+                console.log("Processing item:", JSON.stringify(item, null, 2)); 
                 const sides = item.cardSides || item.cardsides;
                 if (sides && Array.isArray(sides)) {
                     const wordSide = sides.find(side => side.label === "word");
@@ -121,13 +115,12 @@ const getQuizletSet = async (url) => {
     return result;
 };
 
-// Define a route to handle Quizlet set requests
 app.get('/quizlet-set/:setId', async (req, res) => {
     const setId = req.params.setId;
     const url = `https://quizlet.com/${setId}`;
     try {
         const data = await getQuizletSet(url);
-        await delay(500);  // Add delay of 500ms before responding to allow browser closure
+        await delay(500);  
         res.setHeader('Cache-Control', 'public, max-age=0');
         res.json(data);
     } catch (error) {
@@ -136,7 +129,6 @@ app.get('/quizlet-set/:setId', async (req, res) => {
     }
 });
 
-// Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);

@@ -31,7 +31,6 @@ struct QuizletImportView: View {
                 .disabled(isLoading || quizletURL.isEmpty)
                 .padding(.horizontal)
 
-                // Display confirmation message
                 ScrollView {
                     Text(message)
                         .padding()
@@ -84,16 +83,13 @@ struct QuizletImportView: View {
                         return
                     }
                     
-                    // Attempt to parse JSON response
                     if let jsonObject = try? JSONSerialization.jsonObject(with: data, options: []),
                        var jsonDictionary = jsonObject as? [String: Any] {
                         
-                        // Add creator uid and creation date
                         let creatorId = Auth.auth().currentUser?.uid ?? "unknown"
                         jsonDictionary["creatorId"] = creatorId
                         jsonDictionary["dateCreated"] = FieldValue.serverTimestamp()
                         
-                        // Save to Firestore
                         let db = Firestore.firestore()
                         db.collection("flashcardSets").document(setId).setData(jsonDictionary) { err in
                             DispatchQueue.main.async {

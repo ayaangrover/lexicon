@@ -1,11 +1,3 @@
-//
-//  ChatMessage.swift
-//  Lexicon
-//
-//  Created by Ayaan Grover on 4/3/25.
-//
-
-
 import Foundation
 
 struct ChatMessage: Identifiable, Codable {

@@ -1,4 +1,3 @@
-// Swift
 import SwiftUI
 import FirebaseAuth
 import FirebaseFirestore
@@ -23,11 +22,11 @@ struct AppView: View {
                     if isOnboardingComplete {
                         VStack {
                             VStack(spacing: 20) {
-                                Text("Welcome back, \(Auth.auth().currentUser?.email ?? "No Email")!")
+                                Text("Welcome back, \(Auth.auth().currentUser?.email ?? "user. You seem to be signed out")!")
                                     .font(.largeTitle)
                                     .fontWeight(.bold)
                                 
-                                Text("Main features of the app")
+                                Text("What will you study today?")
                                     .font(.headline)
                                 
                                 LazyVGrid(columns: gridItems, spacing: 20) {

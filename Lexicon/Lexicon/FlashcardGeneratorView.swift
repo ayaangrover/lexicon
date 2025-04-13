@@ -111,7 +111,6 @@ struct FlashcardGeneratorView: View {
                    let messageDict = firstChoice["message"] as? [String: Any],
                    let replyContent = messageDict["content"] as? String {
                     DispatchQueue.main.async {
-                        // Output full reply as a single flashcard entry
                         self.generatedFlashcards = [("Full Response", replyContent)]
                     }
                 } else {

@@ -2,89 +2,59 @@ import SwiftUI
 import FirebaseAuth
 
 struct SignupView: View {
+    @Environment(\.presentationMode) var presentationMode
     @State private var email = ""
     @State private var password = ""
+    @State private var confirmPassword = ""
     @State private var errorMessage = ""
     @State private var isLoading = false
-    @State private var navigateToAppView = false
 
     var body: some View {
-        VStack(spacing: 30) {
-            VStack(spacing: 20) {
-                // Email and password fields for sign-up
-                TextField("Email", text: $email)
-                    .padding()
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .autocapitalization(.none)  // Prevent email from capitalizing
+        VStack(spacing: 20) {
+            TextField("Email", text: $email)
+                .padding()
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                .autocapitalization(.none)
 
-                SecureField("Password", text: $password)
-                    .padding()
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+            SecureField("Password", text: $password)
+                .padding()
+                .textFieldStyle(RoundedBorderTextFieldStyle())
 
-                // Show error message if any
-                if !errorMessage.isEmpty {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
-                        .font(.subheadline)
-                }
+            SecureField("Confirm Password", text: $confirmPassword)
+                .padding()
+                .textFieldStyle(RoundedBorderTextFieldStyle())
 
-                // Sign Up Button
-                Button(action: {
-                    signUp()
-                }) {
-                    Text("Sign Up")
-                        .font(.headline)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.black)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                }
-            }
-            .padding(.horizontal, 40)
-
-            // Switch to login
-            HStack {
-                Text("Already have an account?")
-                    .font(.footnote)
-                Button(action: {
-                    // Navigate to LoginView
-                    navigateToAppView.toggle()
-                }) {
-                    Text("Log in")
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                }
+            if !errorMessage.isEmpty {
+                Text(errorMessage)
+                    .foregroundColor(.red)
             }
 
-            // Loading indicator (if user is signing up)
-            if isLoading {
-                ProgressView("Loading...")
-                    .progressViewStyle(CircularProgressViewStyle())
+            Button(action: signUp) {
+                Text(isLoading ? "Signing up..." : "Sign Up")
+                    .frame(maxWidth: .infinity)
                     .padding()
+                    .background(Color.black)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
             }
-
             Spacer()
         }
         .padding()
-        .background(Color.white)
-        .fullScreenCover(isPresented: $navigateToAppView) {
-            // Navigate to AppView after successful signup
-            AppView()
-        }
     }
-
-    // Sign-up method
+    
     func signUp() {
+        guard password == confirmPassword else {
+            errorMessage = "Passwords do not match."
+            return
+        }
         isLoading = true
+        errorMessage = ""
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             isLoading = false
             if let error = error {
-                self.errorMessage = "Error: \(error.localizedDescription)"
+                errorMessage = "Error: \(error.localizedDescription)"
             } else {
-                self.errorMessage = "User created successfully!"
-                // Navigate to AppView after successful sign-up
-                navigateToAppView = true
+                presentationMode.wrappedValue.dismiss()
             }
         }
     }

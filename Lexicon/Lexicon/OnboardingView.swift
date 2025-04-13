@@ -85,7 +85,9 @@ struct OnboardingView: View {
             Text("Name: \(name)")
                 .font(.title2)
             Button("Finish Onboarding") {
+                print("starting data upload")
                 updateUserProfile()
+                print("data upload finished")
             }
             .padding()
             .background(Color.black)
@@ -111,12 +113,10 @@ struct OnboardingView: View {
         let db = Firestore.firestore()
         
         if let image = inputImage {
-            // Compress the image to JPEG with quality 0.5
             guard let imageData = image.jpegData(compressionQuality: 0.5) else {
                 errorMessage = "Could not compress image."
                 return
             }
-            // Convert image data to Base64 string
             let base64String = imageData.base64EncodedString()
             
             let profileData: [String: Any] = [

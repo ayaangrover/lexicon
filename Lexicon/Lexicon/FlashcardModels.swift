@@ -1,4 +1,3 @@
-// File: FlashcardModels.swift
 import Foundation
 
 struct Flashcard: Identifiable, Codable, Equatable, Hashable {

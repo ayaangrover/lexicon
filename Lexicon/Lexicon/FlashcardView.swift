@@ -1,4 +1,3 @@
-// Swift
 import SwiftUI
 import AVFoundation
 
@@ -30,7 +29,6 @@ struct FlashcardView: View {
             }
             .rotation3DEffect(.degrees(flipDegrees), axis: (x: 1, y: 0, z: 0))
             
-            // Plain voice button without background color
             Button("Speak Flashcard") {
                 speakText(flipped ? card.answer : card.question)
             }

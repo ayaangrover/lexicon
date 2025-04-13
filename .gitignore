@@ -5,7 +5,7 @@
 ## User settings
 xcuserdata/
 
-/Lexicon/Lexicon/GoogleService-Info.plist
+./Lexicon/Lexicon/GoogleService-Info.plist
 
 ## Obj-C/Swift specific
 *.hmap

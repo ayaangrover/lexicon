@@ -1,13 +1,15 @@
-// File: SetDetailView.swift
 import SwiftUI
+import FirebaseAuth
+import FirebaseFirestore
 
 struct SetDetailView: View {
     var set: FlashcardSet
     @State private var currentIndex: Int = 0
     @State private var showEditView = false
     @State private var showLearnView = false
-    @State private var showTestView = false  // New state variable
-
+    @State private var showTestView = false
+    @State private var showShareView = false
+    
     var body: some View {
         VStack {
             if !set.cards.isEmpty {
@@ -19,7 +21,7 @@ struct SetDetailView: View {
                                                   removal: .move(edge: .leading)))
                 }
                 .animation(.easeInOut, value: currentIndex)
-
+                
                 HStack {
                     Button(action: {
                         if currentIndex > 0 {
@@ -61,9 +63,7 @@ struct SetDetailView: View {
                     Button("Edit Cards") {
                         showEditView = true
                     }
-                    Button(action: {
-                        showLearnView = true
-                    }) {
+                    Button(action: { showLearnView = true }) {
                         HStack {
                             Image(systemName: "q.circle")
                             Text("Learn")
@@ -73,8 +73,11 @@ struct SetDetailView: View {
                         .foregroundColor(.white)
                         .cornerRadius(8)
                     }
-                    Button("Test") {   // New Test button
+                    Button("Test") {
                         showTestView = true
+                    }
+                    Button("Share") {
+                        showShareView = true
                     }
                 }
             }
@@ -85,8 +88,11 @@ struct SetDetailView: View {
         .sheet(isPresented: $showLearnView) {
             LearnView(set: set)
         }
-        .sheet(isPresented: $showTestView) {  // Present TestView
+        .sheet(isPresented: $showTestView) {
             TestView(set: set)
+        }
+        .sheet(isPresented: $showShareView) {
+            ShareSetView(set: set)
         }
     }
 }

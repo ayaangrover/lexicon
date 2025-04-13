@@ -11,7 +11,7 @@ struct ProfileView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            Spacer().frame(height: 20) // Adds a bit of space above the profile icon
+            Spacer().frame(height: 20) 
             if let photo = photoImage {
                 photo
                     .resizable()
@@ -28,7 +28,6 @@ struct ProfileView: View {
                     .font(.body)
                     .padding(.top, 4)
             }
-            // Replace horizontal badges with a big star badge view
             StarBadgeView(setsStudied: setsStudied)
             Spacer()
         }

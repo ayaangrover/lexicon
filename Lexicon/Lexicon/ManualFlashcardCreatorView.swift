@@ -96,7 +96,6 @@ struct ManualFlashcardCreatorView: View {
             "creatorId": Auth.auth().currentUser?.uid ?? "unknown"
         ]
         
-        // Using the title as the document id may lead to issues so a generated id or UUID is recommended.
         db.collection("flashcardSets").addDocument(data: setData) { error in
             if let error = error {
                 errorMessage = "Error saving set: \(error.localizedDescription)"

@@ -4,7 +4,6 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 30) {
-                // App Logo or Icon (smaller and closer to the name)
                 Image(systemName: "book.fill")
                     .resizable()
                     .scaledToFit()
@@ -13,20 +12,17 @@ struct ContentView: View {
                     .padding(.top, 60)
                     .padding(.bottom, 0)
                 
-                // App Name
                 Text("Lexicon")
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                 
-                // Subtitle
                 Text("Your AI-powered study companion")
                     .font(.headline)
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 40)
                 
-                // Slideshow for Features
                 TabView {
                     FeatureRow(icon: "menucard", title: "Smart Flashcards", description: "Study smarter with AI-powered flashcards.")
                     FeatureRow(icon: "note.text", title: "AI-Summarized Notes", description: "Get concise summaries of your notes.")
@@ -37,7 +33,6 @@ struct ContentView: View {
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 .padding()
                 
-                // Login & Sign Up Buttons
                 VStack(spacing: 15) {
                     NavigationLink(destination: LoginView()) {
                         Text("Log In")
@@ -64,7 +59,7 @@ struct ContentView: View {
                 Spacer()
             }
             .padding()
-            .background(Color.white) // Make background white or slightly beige
+            .background(Color.white)
         }
     }
 }

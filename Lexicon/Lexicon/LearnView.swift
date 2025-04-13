@@ -1,4 +1,3 @@
-// Swift
 import SwiftUI
 
 enum LearnPhase {
@@ -17,7 +16,6 @@ struct LearnView: View {
     @State private var currentPhase: LearnPhase = .multipleChoice
     @State private var showCongrats = false
     
-    // Timer properties
     @State private var timeLeft = 30
     @State private var timer: Timer? = nil
 
@@ -32,7 +30,6 @@ struct LearnView: View {
                     .foregroundColor(.green)
             }
             else if let card = currentCard {
-                // Removed "Define:" label.
                 Text(card.question)
                     .font(.largeTitle)
                 
@@ -69,7 +66,7 @@ struct LearnView: View {
                         checkWrittenAnswer()
                     }) {
                         HStack {
-                            Image(systemName: "circle") // Removed the Q icon
+                            Image(systemName: "circle") 
                             Text("Submit Answer")
                         }
                         .frame(maxWidth: .infinity)
@@ -94,7 +91,6 @@ struct LearnView: View {
         }
     }
     
-    // (Helper functions remain unchanged)
     
     func multipleChoiceOptions(for card: Flashcard) -> [String]? {
         let otherAnswers = set.cards

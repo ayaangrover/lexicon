@@ -11,24 +11,21 @@ struct LoginView: View {
     var body: some View {
         VStack(spacing: 30) {
             VStack(spacing: 20) {
-                // Email and password fields for login
                 TextField("Email", text: $email)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .autocapitalization(.none)  // Prevent email from capitalizing
+                    .autocapitalization(.none)  
 
                 SecureField("Password", text: $password)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
 
-                // Show error message if any
                 if !errorMessage.isEmpty {
                     Text(errorMessage)
                         .foregroundColor(.red)
                         .font(.subheadline)
                 }
 
-                // Log In Button
                 Button(action: {
                     logIn()
                 }) {
@@ -43,12 +40,10 @@ struct LoginView: View {
             }
             .padding(.horizontal, 40)
 
-            // Switch to sign-up
             HStack {
                 Text("Don't have an account?")
                     .font(.footnote)
                 Button(action: {
-                    // Navigate to SignupView
                     navigateToAppView.toggle()
                 }) {
                     Text("Sign up")
@@ -57,7 +52,6 @@ struct LoginView: View {
                 }
             }
 
-            // Loading indicator (if user is logging in)
             if isLoading {
                 ProgressView("Loading...")
                     .progressViewStyle(CircularProgressViewStyle())
@@ -69,12 +63,10 @@ struct LoginView: View {
         .padding()
         .background(Color.white)
         .fullScreenCover(isPresented: $navigateToAppView) {
-            // Navigate to AppView after successful login/signup
             AppView()
         }
     }
 
-    // Login method
     func logIn() {
         isLoading = true
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
@@ -83,7 +75,6 @@ struct LoginView: View {
                 self.errorMessage = "Error: \(error.localizedDescription)"
             } else {
                 self.errorMessage = "Logged in successfully!"
-                // Navigate to AppView after successful login
                 navigateToAppView = true
             }
         }

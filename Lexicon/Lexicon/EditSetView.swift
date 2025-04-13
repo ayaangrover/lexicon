@@ -1,11 +1,3 @@
-//
-//  EditSetView.swift
-//  Lexicon
-//
-//  Created by Ayaan Grover on 3/30/25.
-//
-
-
 import SwiftUI
 import FirebaseFirestore
 
