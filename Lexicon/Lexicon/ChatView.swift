@@ -10,7 +10,7 @@ struct ChatView: View {
     @State private var selectedSet: FlashcardSet? = nil
     @State private var isLoading: Bool = false
 
-    let apiKey = "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"
+    let apiKey = "API_KEY"
 
     var body: some View {
         NavigationView {
@@ -183,7 +183,7 @@ struct ChatView: View {
         var exaRequest = URLRequest(url: exaURL)
         exaRequest.httpMethod = "POST"
         exaRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        exaRequest.addValue("Bearer 263dca21-9f1a-4418-bb00-751e8066d9f3", forHTTPHeaderField: "Authorization")
+        exaRequest.addValue("Bearer API_KEY", forHTTPHeaderField: "Authorization")
         
         let exaBody: [String: Any] = [
             "model": "exa",
