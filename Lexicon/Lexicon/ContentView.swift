@@ -1,3 +1,4 @@
+
 import SwiftUI
 
 struct ContentView: View {
@@ -8,18 +9,17 @@ struct ContentView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 50, height: 50)
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.appText)
                     .padding(.top, 60)
-                    .padding(.bottom, 0)
                 
                 Text("Lexicon")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.appText)
                 
                 Text("Your AI-powered study companion")
                     .font(.headline)
-                    .foregroundColor(.gray)
+                    .foregroundColor(Color.appText)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 40)
                 
@@ -36,30 +36,24 @@ struct ContentView: View {
                 VStack(spacing: 15) {
                     NavigationLink(destination: LoginView()) {
                         Text("Log In")
-                            .font(.headline)
                             .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.black)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                            .foregroundColor(Color.appText)
                     }
-                    
+                    .buttonStyle(AppButtonStyle())
+
                     NavigationLink(destination: SignupView()) {
                         Text("Sign Up")
-                            .font(.headline)
                             .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.gray.opacity(0.2))
-                            .foregroundColor(.black)
-                            .cornerRadius(10)
+                            .foregroundColor(Color.appText)
                     }
+                    .buttonStyle(AppButtonStyle())
                 }
                 .padding(.horizontal, 40)
                 
                 Spacer()
             }
             .padding()
-            .background(Color.white)
+            .background(Color.appBackground.ignoresSafeArea())
         }
     }
 }
@@ -75,14 +69,14 @@ struct FeatureRow: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: 80, height: 80)
-                .foregroundColor(.black)
+                .foregroundColor(Color.appText)
             Text(title)
                 .font(.headline)
-                .foregroundColor(.black)
+                .foregroundColor(Color.appText)
                 .padding(.top, 8)
             Text(description)
                 .font(.body)
-                .foregroundColor(.gray)
+                .foregroundColor(Color.appText)
                 .padding(.top, 4)
                 .multilineTextAlignment(.center)
         }

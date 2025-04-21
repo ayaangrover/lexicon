@@ -19,15 +19,15 @@ struct DocumentPicker: UIViewControllerRepresentable {
 
     class Coordinator: NSObject, UIDocumentPickerDelegate {
         let parent: DocumentPicker
-        
+
         init(_ parent: DocumentPicker) {
             self.parent = parent
         }
-        
+
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
             parent.selectedPDF = urls.first
         }
-        
+
         func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) { }
     }
 }

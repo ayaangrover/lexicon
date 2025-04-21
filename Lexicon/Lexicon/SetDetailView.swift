@@ -1,3 +1,4 @@
+
 import SwiftUI
 import FirebaseAuth
 import FirebaseFirestore
@@ -9,6 +10,7 @@ struct SetDetailView: View {
     @State private var showLearnView = false
     @State private var showTestView = false
     @State private var showShareView = false
+    @State private var flashcardTransition: AnyTransition = .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
     
     var body: some View {
         VStack {
@@ -17,19 +19,22 @@ struct SetDetailView: View {
                     FlashcardView(card: set.cards[currentIndex])
                         .padding()
                         .id(currentIndex)
-                        .transition(.asymmetric(insertion: .move(edge: .trailing),
-                                                  removal: .move(edge: .leading)))
+                        .transition(flashcardTransition)
                 }
                 .animation(.easeInOut, value: currentIndex)
                 
                 HStack {
                     Button(action: {
                         if currentIndex > 0 {
-                            withAnimation { currentIndex -= 1 }
+                            flashcardTransition = .asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing))
+                            withAnimation {
+                                currentIndex -= 1
+                            }
                         }
                     }) {
                         Image(systemName: "arrow.left")
                             .font(.largeTitle)
+                            .foregroundColor(Color.appIcon)
                     }
                     .padding()
 
@@ -37,22 +42,28 @@ struct SetDetailView: View {
 
                     Text("\(currentIndex + 1)/\(set.cards.count)")
                         .font(.headline)
+                        .foregroundColor(Color.appText)
 
                     Spacer()
 
                     Button(action: {
                         if currentIndex < set.cards.count - 1 {
-                            withAnimation { currentIndex += 1 }
+                            flashcardTransition = .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
+                            withAnimation {
+                                currentIndex += 1
+                            }
                         }
                     }) {
                         Image(systemName: "arrow.right")
                             .font(.largeTitle)
+                            .foregroundColor(Color.appIcon)
                     }
                     .padding()
                 }
                 .padding(.horizontal)
             } else {
                 Text("No flashcards available")
+                    .foregroundColor(Color.appText)
             }
             Spacer()
         }
@@ -60,25 +71,31 @@ struct SetDetailView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 HStack {
-                    Button("Edit Cards") {
+                    Button("Edit") {
                         showEditView = true
                     }
+                    .foregroundStyle(Color(red: 63/255, green: 183/255, blue: 154/255))
                     Button(action: { showLearnView = true }) {
                         HStack {
-                            Image(systemName: "q.circle")
                             Text("Learn")
                         }
                         .padding(8)
-                        .background(Color.purple.opacity(0.7))
-                        .foregroundColor(.white)
+                        .foregroundStyle(Color(red: 63/255, green: 183/255, blue: 154/255))
                         .cornerRadius(8)
                     }
                     Button("Test") {
                         showTestView = true
                     }
-                    Button("Share") {
+                    .foregroundStyle(Color(red: 63/255, green: 183/255, blue: 154/255))
+
+                    Button(action: {
                         showShareView = true
+                    }) {
+                        Image(systemName: "square.and.arrow.up")
                     }
+                    .foregroundStyle(Color(red: 63/255, green: 183/255, blue: 154/255))
+
+
                 }
             }
         }

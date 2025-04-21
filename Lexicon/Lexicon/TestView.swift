@@ -7,20 +7,25 @@ struct TestView: View {
     @State private var submitted = false
     @State private var score = 0
     @State private var mistakes: [Int] = []
-
+    
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
                 ForEach(Array(shuffledCards.enumerated()), id: \.offset) { idx, card in
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 8) {
                         Text("Q\(idx + 1): \(card.question)")
                             .font(.headline)
+                            .foregroundColor(.black)
                         TextField("Your answer", text: Binding(
                             get: { userAnswers[idx] },
                             set: { userAnswers[idx] = $0 }
                         ))
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
+                    .padding()
+                    .background(Color.appBackground)
+                    .cornerRadius(10)
+                    .shadow(color: Color.black.opacity(0.1), radius: 2, x: 0, y: 1)
                 }
                 Button("Submit") {
                     score = 0
@@ -37,16 +42,23 @@ struct TestView: View {
                     submitted = true
                 }
                 .padding(.vertical)
+                .frame(maxWidth: .infinity)
+                .background(Color(red: 63/255, green: 183/255, blue: 154/255))
+                .foregroundColor(.appBackground)
+                .cornerRadius(8)
                 if submitted {
                     Text("Score: \(score)/\(shuffledCards.count)")
                         .font(.headline)
+                        .foregroundColor(.black)
                     ForEach(mistakes, id: \.self) { idx in
                         let card = shuffledCards[idx]
-                        VStack(alignment: .leading) {
+                        VStack(alignment: .leading, spacing: 4) {
                             Text("Question: \(card.question)")
+                                .foregroundColor(.black)
                             Text("Your answer: \(userAnswers[idx])")
+                                .foregroundColor(.red)
                             Text("Correct answer: \(card.answer)")
-                                .foregroundColor(.green)
+                                .foregroundColor(Color(red: 63/255, green: 183/255, blue: 154/255))
                         }
                         .padding(.vertical, 4)
                     }
@@ -54,6 +66,7 @@ struct TestView: View {
             }
             .padding()
         }
+        .background(Color.appBackground)
         .onAppear {
             shuffledCards = set.cards.shuffled()
             userAnswers = Array(repeating: "", count: shuffledCards.count)

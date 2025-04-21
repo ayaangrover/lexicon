@@ -26,14 +26,14 @@ struct SignupView: View {
 
             if !errorMessage.isEmpty {
                 Text(errorMessage)
-                    .foregroundColor(.red)
+                    .foregroundColor(.appIcon)
             }
 
             Button(action: signUp) {
                 Text(isLoading ? "Signing up..." : "Sign Up")
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.black)
+                    .background(Color.appIcon)
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }

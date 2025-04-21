@@ -10,6 +10,7 @@ struct LearnView: View {
     @State private var mcPendingCards: [Flashcard] = []
     @State private var writtenPendingCards: [Flashcard] = []
     @State private var currentCard: Flashcard?
+    @State private var currentOptions: [String] = []
     @State private var answerInput = ""
     @State private var feedbackMessage = ""
     @State private var mcFeedbackMessage = ""
@@ -18,34 +19,36 @@ struct LearnView: View {
     
     @State private var timeLeft = 30
     @State private var timer: Timer? = nil
-
+    
     var body: some View {
         VStack(spacing: 20) {
             Text("Time Remaining: \(timeLeft)s")
                 .font(.headline)
-                .foregroundColor(timeLeft <= 5 ? .red : .black)
+                .foregroundColor(timeLeft <= 5 ? .red : .appText)
             if showCongrats {
                 Text("Congrats! You got them all right!")
                     .font(.title)
-                    .foregroundColor(.green)
+                    .foregroundColor(Color(red: 63/255, green: 183/255, blue: 154/255))
             }
             else if let card = currentCard {
                 Text(card.question)
                     .font(.largeTitle)
+                    .foregroundColor(.appText)
+                    .multilineTextAlignment(.center)
+                    .padding()
                 
                 if currentPhase == .multipleChoice {
-                    if let options = multipleChoiceOptions(for: card) {
-                        ForEach(options, id: \.self) { option in
-                            Button(action: {
-                                stopTimer()
-                                checkMCAnswer(option, for: card)
-                            }) {
-                                Text(option)
-                                    .frame(maxWidth: .infinity)
-                                    .padding()
-                                    .background(Color.blue.opacity(0.2))
-                                    .cornerRadius(8)
-                            }
+                    ForEach(currentOptions, id: \.self) { option in
+                        Button {
+                            stopTimer()
+                            checkMCAnswer(option, for: card)
+                        } label: {
+                            Text(option)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background(Color(red: 63/255, green: 183/255, blue: 154/255))
+                                .foregroundColor(.white)
+                                .cornerRadius(8)
                         }
                     }
                     if !mcFeedbackMessage.isEmpty {
@@ -61,44 +64,47 @@ struct LearnView: View {
                         Text(feedbackMessage)
                             .foregroundColor(.red)
                     }
-                    Button(action: {
+                    Button {
                         stopTimer()
                         checkWrittenAnswer()
-                    }) {
+                    } label: {
                         HStack {
-                            Image(systemName: "circle") 
+                            Image(systemName: "checkmark.circle")
                             Text("Submit Answer")
                         }
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.purple.opacity(0.7))
+                        .background(Color(red: 63/255, green: 183/255, blue: 154/255))
                         .foregroundColor(.white)
-                        .cornerRadius(10)
+                        .cornerRadius(8)
                     }
                     .padding(.horizontal)
                 }
             }
             else {
                 Text("No flashcards available.")
+                    .foregroundColor(.appText)
             }
             Spacer()
         }
-        .onAppear(perform: startLearning)
         .padding()
         .navigationTitle(set.title)
+        .onAppear(perform: startLearning)
         .onChange(of: currentCard) { _ in
+            if currentPhase == .multipleChoice {
+                setupCurrentOptions()
+            }
             resetAndStartTimer()
         }
     }
     
-    
-    func multipleChoiceOptions(for card: Flashcard) -> [String]? {
-        let otherAnswers = set.cards
-            .map { $0.answer }
-            .filter { $0.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() != card.answer.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() }
-        let randomAlternatives = Array(otherAnswers.shuffled().prefix(3))
-        let options = randomAlternatives + [card.answer]
-        return options.shuffled()
+    func setupCurrentOptions() {
+        if let card = currentCard, currentPhase == .multipleChoice {
+            let otherAnswers = set.cards.map { $0.answer }
+                .filter { $0.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() != card.answer.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() }
+            let randomAlternatives = Array(otherAnswers.shuffled().prefix(3))
+            currentOptions = (randomAlternatives + [card.answer]).shuffled()
+        }
     }
     
     func checkMCAnswer(_ option: String, for card: Flashcard) {
@@ -126,7 +132,7 @@ struct LearnView: View {
     }
     
     func startLearning() {
-        mcPendingCards = set.cards
+        mcPendingCards = set.cards.shuffled()
         loadNextMCCard()
     }
     
@@ -134,7 +140,7 @@ struct LearnView: View {
         stopTimer()
         if mcPendingCards.isEmpty {
             currentPhase = .written
-            writtenPendingCards = set.cards
+            writtenPendingCards = set.cards.shuffled()
             loadNextWrittenCard()
         } else {
             currentCard = mcPendingCards.removeFirst()

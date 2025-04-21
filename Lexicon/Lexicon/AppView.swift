@@ -3,10 +3,12 @@ import FirebaseAuth
 import FirebaseFirestore
 
 struct AppView: View {
+    @Environment(\.colorScheme) var colorScheme
     @State private var isOnboardingComplete: Bool = false
     @State private var isLoading: Bool = true
     @State private var showProfile = false
     @State private var showSettings = false
+    @State private var userName: String = "user"
     
     let gridItems = [
         GridItem(.flexible(), spacing: 20),
@@ -15,74 +17,83 @@ struct AppView: View {
     
     var body: some View {
         NavigationView {
-            Group {
+            ZStack {
+                
+                Color(colorScheme == .dark ? .black : .white)
+                    .edgesIgnoringSafeArea(.all)
                 if isLoading {
                     ProgressView("Loading...")
+                        .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                        .scaleEffect(1.2)
                 } else {
                     if isOnboardingComplete {
-                        VStack {
-                            VStack(spacing: 20) {
-                                Text("Welcome back, \(Auth.auth().currentUser?.email ?? "user. You seem to be signed out")!")
-                                    .font(.largeTitle)
-                                    .fontWeight(.bold)
-                                
+                        VStack(spacing: 30) {
+                            VStack(spacing: 10) {
+                                Text("Welcome back, \(userName)!")
+                                    .font(.system(size: 28, weight: .semibold))
+                                    .foregroundColor(.primary)
                                 Text("What will you study today?")
-                                    .font(.headline)
-                                
-                                LazyVGrid(columns: gridItems, spacing: 20) {
-                                    NavigationLink(destination: FlashcardGeneratorView()) {
-                                        FeatureButtonView(title: "Generate Flashcards with AI")
-                                    }
-                                    
-                                    NavigationLink(destination: QuizletImportView()) {
-                                        FeatureButtonView(title: "Import Flashcards from Quizlet")
-                                    }
-                                    
-                                    NavigationLink(destination: MySetsView()) {
-                                        FeatureButtonView(title: "View My Sets")
-                                    }
-                                    
-                                    NavigationLink(destination: ChatView()) {
-                                        FeatureButtonView(title: "Study with AI")
-                                    }
-                                    
-                                    NavigationLink(destination: ManualFlashcardCreatorView()) {
-                                        FeatureButtonView(title: "Create a Flashcard Set")
-                                    }
+                                    .font(.system(size: 20, weight: .regular))
+                                    .foregroundColor(.secondary)
+                            }
+                            .padding(.top, 40)
+                            
+                            LazyVGrid(columns: gridItems, spacing: 20) {
+                                NavigationLink(destination: QuizletImportView()) {
+                                    FeatureButtonView(title: "Import Flashcards from Quizlet")
                                 }
-                                .padding(.horizontal)
+                                
+                                NavigationLink(destination: MySetsView()) {
+                                    FeatureButtonView(title: "View My Sets")
+                                }
+                                
+                                NavigationLink(destination: ChatView()) {
+                                    FeatureButtonView(title: "Study with AI")
+                                }
+                                
+                                NavigationLink(destination: ManualFlashcardCreatorView()) {
+                                    FeatureButtonView(title: "Create a Flashcard Set")
+                                }
+                                
+                                NavigationLink(destination: FlashcardGeneratorView()) {
+                                    FeatureButtonView(title: "Generate a Flashcard Set with AI")
+                                }
                             }
                             .padding()
-                            .navigationBarTitle("", displayMode: .inline)
-                            .toolbar {
-                                ToolbarItemGroup(placement: .navigationBarLeading) {
-                                    Button(action: { showProfile = true }) {
-                                        Image(systemName: "person.crop.circle")
-                                            .font(.title2)
-                                            .foregroundColor(.primary)
-                                    }
-                                }
-                                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                                    Button(action: { showSettings = true }) {
-                                        Image(systemName: "gearshape")
-                                            .font(.title2)
-                                            .foregroundColor(.primary)
-                                    }
+                            
+                            MotivationView()
+                            
+                            Spacer()
+                        }
+                        .padding()
+                        .navigationBarTitle("", displayMode: .inline)
+                        .toolbar {
+                            ToolbarItemGroup(placement: .navigationBarLeading) {
+                                Button(action: { showProfile = true }) {
+                                    Image(systemName: "person.crop.circle")
+                                        .font(.title2)
+                                        .foregroundColor(.primary)
                                 }
                             }
-                            .sheet(isPresented: $showProfile) {
-                                NavigationView { ProfileView() }
+                            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                                Button(action: { showSettings = true }) {
+                                    Image(systemName: "gearshape")
+                                        .font(.title2)
+                                        .foregroundColor(.primary)
+                                }
                             }
-                            .sheet(isPresented: $showSettings) {
-                                NavigationView { SettingsView() }
-                            }
+                        }
+                        .sheet(isPresented: $showProfile) {
+                            NavigationView { ProfileView() }
+                        }
+                        .sheet(isPresented: $showSettings) {
+                            NavigationView { SettingsView() }
                         }
                     } else {
                         OnboardingView(isOnboardingComplete: $isOnboardingComplete)
                     }
                 }
             }
-            .background(Color(UIColor.systemBackground))
         }
         .onAppear {
             checkOnboardingStatus { status in
@@ -106,23 +117,15 @@ extension AppView {
                 completion(false)
                 return
             }
-            if let data = snapshot?.data(), let onboardingComplete = data["onboardingComplete"] as? Bool {
-                completion(onboardingComplete)
+            if let data = snapshot?.data() {
+                let onboarding = data["onboardingComplete"] as? Bool ?? false
+                if let name = data["name"] as? String {
+                    self.userName = name
+                }
+                completion(onboarding)
             } else {
                 completion(false)
             }
         }
-    }
-}
-
-struct FeatureButtonView: View {
-    var title: String
-    var body: some View {
-        Text(title)
-            .font(.headline)
-            .foregroundColor(.white)
-            .frame(maxWidth: .infinity, minHeight: 100)
-            .background(Color.black)
-            .cornerRadius(10)
     }
 }

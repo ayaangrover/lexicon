@@ -8,10 +8,6 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
-                Text("Settings")
-                    .font(.largeTitle)
-                    .padding()
-
                 Button("Log Out") {
                     do {
                         try Auth.auth().signOut()
@@ -22,8 +18,8 @@ struct SettingsView: View {
                     }
                 }
                 .padding()
-                .background(Color.black)
-                .foregroundColor(.white)
+                .background(Color.appText)
+                .foregroundColor(.appBackground)
                 .cornerRadius(10)
 
                 if !errorMessage.isEmpty {

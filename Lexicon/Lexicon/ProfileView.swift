@@ -11,7 +11,7 @@ struct ProfileView: View {
 
     var body: some View {
         VStack(spacing: 16) {
-            Spacer().frame(height: 20) 
+            Spacer().frame(height: 20)
             if let photo = photoImage {
                 photo
                     .resizable()
@@ -24,11 +24,11 @@ struct ProfileView: View {
                 .font(.footnote)
                 .foregroundColor(Color.gray)
             if let date = signupDate {
-                Text("🎉  Thanks for being a member since \(formattedDate(from: date))")
+                Text("Member since \(formattedDate(from: date))")
                     .font(.body)
                     .padding(.top, 4)
             }
-            StarBadgeView(setsStudied: setsStudied)
+
             Spacer()
         }
         .padding()
@@ -37,7 +37,7 @@ struct ProfileView: View {
             fetchSetsStudied()
         }
     }
-    
+
     func fetchUserProfile() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()
@@ -60,7 +60,7 @@ struct ProfileView: View {
             }
         }
     }
-    
+
     func fetchSetsStudied() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()
@@ -71,7 +71,7 @@ struct ProfileView: View {
             }
         }
     }
-    
+
     func formattedDate(from date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium

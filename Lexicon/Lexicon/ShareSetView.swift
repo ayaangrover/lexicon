@@ -7,11 +7,11 @@ struct ShareSetView: View {
     @State private var email: String = ""
     @State private var errorMessage: String = ""
     @State private var isSharing: Bool = false
-
+    
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Share Set")) {
+                Section(header: Text("Share Set").foregroundColor(.appText)) {
                     TextField("Email address to share with", text: $email)
                         .keyboardType(.emailAddress)
                         .autocapitalization(.none)
@@ -28,10 +28,14 @@ struct ShareSetView: View {
                 }
             }
             .navigationTitle("Share Set")
-            .navigationBarItems(leading: Button("Cancel") {
-                presentationMode.wrappedValue.dismiss()
-            })
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") { presentationMode.wrappedValue.dismiss() }
+                        .foregroundColor(Color(red: 63/255, green: 183/255, blue: 154/255))
+                }
+            }
         }
+        .accentColor(Color(red: 63/255, green: 183/255, blue: 154/255))
     }
     
     func shareSet() {

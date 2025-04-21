@@ -24,6 +24,7 @@ struct ManualFlashcardCreatorView: View {
                         Button("Add Flashcard") {
                             addFlashcard()
                         }
+                        .foregroundStyle(Color(red: 63/255, green: 183/255, blue: 154/255))
                     }
                     
                     if !flashcards.isEmpty {
@@ -50,6 +51,7 @@ struct ManualFlashcardCreatorView: View {
                     Button("Cancel") {
                         presentationMode.wrappedValue.dismiss()
                     }
+                    .foregroundStyle(Color(red: 63/255, green: 183/255, blue: 154/255))
                     .padding()
                     
                     Spacer()
@@ -57,6 +59,7 @@ struct ManualFlashcardCreatorView: View {
                     Button("Save Set") {
                         saveSet()
                     }
+                    .foregroundStyle(Color(red: 63/255, green: 183/255, blue: 154/255))
                     .padding()
                     .disabled(setTitle.trimmingCharacters(in: .whitespaces).isEmpty || flashcards.isEmpty)
                 }

@@ -1,82 +1,76 @@
 import SwiftUI
-import UniformTypeIdentifiers
+import FirebaseAuth
+import FirebaseFirestore
 
 struct FlashcardGeneratorView: View {
-    @State private var inputText: String = ""
-    @State private var selectedPDF: URL?
-    @State private var generatedFlashcards: [(String, String)] = []
-    @State private var isGenerating: Bool = false
-    @State private var showDocumentPicker: Bool = false
-    @State private var generationError: String = ""
+    @State private var prompt: String = ""
+    @State private var isLoading: Bool = false
+    @State private var errorMessage: String = ""
     
+    let groqEndpoint = "https://api.groq.com/openai/v1/chat/completions"
     let apiKey = "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"
-    let endpoint = "https://api.groq.com/openai/v1/chat/completions"
     
     var body: some View {
-        VStack(spacing: 20) {
-            Text("AI Flashcard Generator")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            TextField("Enter a topic or paste text here...", text: $inputText)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-            Button("Upload PDF") {
-                showDocumentPicker = true
-            }
-            .padding()
-            .background(Color.gray.opacity(0.2))
-            .cornerRadius(10)
-            Button(action: generateFlashcards) {
-                Text(isGenerating ? "Generating..." : "Generate Flashcards")
+        NavigationView {
+            VStack(spacing: 20) {
+                Text("Flashcard Generator")
+                    .font(.largeTitle)
                     .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(Color.black)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-            }
-            .disabled(isGenerating || (inputText.isEmpty && selectedPDF == nil))
-            .padding()
-            if !generationError.isEmpty {
-                Text(generationError)
-                    .foregroundColor(.red)
-                    .padding()
-            }
-            List(generatedFlashcards, id: \.0) { flashcard in
-                VStack(alignment: .leading) {
-                    Text(flashcard.0)
+                
+                TextField("Enter your prompt", text: $prompt)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding(.horizontal)
+                
+                Button(action: generateFlashcards) {
+                    Text(isLoading ? "Generating..." : "Generate")
                         .font(.headline)
-                    Text(flashcard.1)
-                        .font(.body)
-                        .foregroundColor(.gray)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.appIcon)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
                 }
-                .padding()
+                .disabled(isLoading || prompt.isEmpty)
+                .padding(.horizontal)
+                
+                if !errorMessage.isEmpty {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
+                        .padding(.horizontal)
+                }
+                
+                Spacer()
             }
-            Spacer()
-        }
-        .padding()
-        .sheet(isPresented: $showDocumentPicker) {
-            DocumentPicker(selectedPDF: $selectedPDF)
+            .navigationBarTitle("Flashcard Generator", displayMode: .inline)
         }
     }
     
     func generateFlashcards() {
-        isGenerating = true
-        generationError = ""
-        let systemMessage = "You are an AI flashcard generator. Given the user input, generate flashcards as a JSON array where each flashcard is an object with 'question' and 'answer' keys. Output valid JSON only."
-        let userMessage = inputText
+        guard let url = URL(string: groqEndpoint) else { return }
+        isLoading = true
+        errorMessage = ""
         
-        let requestBody: [String: Any] = [
-            "model": "llama3-8b-8192",
-            "messages": [
-                ["role": "system", "content": systemMessage],
-                ["role": "user", "content": userMessage]
+        let flashcardTitle = prompt
+        
+        let messages: [[String: String]] = [
+            [
+                "role": "system",
+                "content": "Your response must be a JSON object with keys \"cards\" containing an array of objects with \"question\" and \"answer\" as strings. Do not include any extra markdown or commentary."
+            ],
+            [
+                "role": "user",
+                "content": prompt
             ]
         ]
         
-        guard let url = URL(string: endpoint),
-              let bodyData = try? JSONSerialization.data(withJSONObject: requestBody, options: []) else {
-            generationError = "Failed to construct request."
-            isGenerating = false
+        let requestBody: [String: Any] = [
+            "model": "llama3-70b-8192",
+            "messages": messages
+        ]
+        
+        guard let bodyData = try? JSONSerialization.data(withJSONObject: requestBody, options: []) else {
+            isLoading = false
+            errorMessage = "Failed to serialize request body."
             return
         }
         
@@ -88,42 +82,122 @@ struct FlashcardGeneratorView: View {
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             defer {
-                DispatchQueue.main.async {
-                    self.isGenerating = false
-                }
+                DispatchQueue.main.async { isLoading = false }
             }
             if let error = error {
                 DispatchQueue.main.async {
-                    self.generationError = "Network error: \(error.localizedDescription)"
+                    errorMessage = "Error: \(error.localizedDescription)"
                 }
                 return
             }
             guard let data = data else {
                 DispatchQueue.main.async {
-                    self.generationError = "No data received from the server."
+                    errorMessage = "No data received."
                 }
                 return
             }
             do {
-                if let jsonResponse = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-                   let choices = jsonResponse["choices"] as? [[String: Any]],
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+                   let choices = json["choices"] as? [[String: Any]],
                    let firstChoice = choices.first,
                    let messageDict = firstChoice["message"] as? [String: Any],
-                   let replyContent = messageDict["content"] as? String {
-                    DispatchQueue.main.async {
-                        self.generatedFlashcards = [("Full Response", replyContent)]
+                   let content = messageDict["content"] as? String {
+                    
+                    let trimmedContent = content.trimmingCharacters(in: .whitespacesAndNewlines)
+                    var finalResponse: [String: Any]? = nil
+                    
+                    if let responseData = trimmedContent.data(using: .utf8),
+                       let aiResponseJSON = try? JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any] {
+                        
+                        if let cards = aiResponseJSON["cards"] as? [[String: Any]] {
+                            let parsedCards = cards.compactMap { card -> [String: String]? in
+                                if let question = card["question"] as? String {
+                                    var answerStr = ""
+                                    if let answer = card["answer"] as? String {
+                                        answerStr = answer
+                                    } else if let answerDict = card["answer"] as? [String: Any],
+                                              let text = answerDict["text"] as? String {
+                                        answerStr = text
+                                    }
+                                    return ["question": question, "answer": answerStr]
+                                }
+                                return nil
+                            }
+                            if !parsedCards.isEmpty {
+                                finalResponse = ["cards": parsedCards]
+                            }
+                        }
+                        if finalResponse == nil,
+                           let question = aiResponseJSON["question"] as? String {
+                            var answerStr = ""
+                            if let answer = aiResponseJSON["answer"] as? String {
+                                answerStr = answer
+                            } else if let answerDict = aiResponseJSON["answer"] as? [String: Any],
+                                      let text = answerDict["text"] as? String {
+                                answerStr = text
+                            }
+                            finalResponse = ["cards": [["question": question, "answer": answerStr]]]
+                        }
+                    } else if trimmedContent.first == "\"" && trimmedContent.last == "\"" {
+                        let stripped = String(trimmedContent.dropFirst().dropLast())
+                        if let innerData = stripped.data(using: .utf8),
+                           let innerJSON = try? JSONSerialization.jsonObject(with: innerData, options: []) as? [String: Any] {
+                            if let question = innerJSON["question"] as? String {
+                                var answerStr = ""
+                                if let answer = innerJSON["answer"] as? String {
+                                    answerStr = answer
+                                } else if let answerDict = innerJSON["answer"] as? [String: Any],
+                                          let text = answerDict["text"] as? String {
+                                    answerStr = text
+                                }
+                                finalResponse = ["cards": [["question": question, "answer": answerStr]]]
+                            }
+                        }
                     }
+                    
+                    if let finalResponse = finalResponse {
+                        saveSet(with: finalResponse, title: flashcardTitle)
+                    } else {
+                        saveSet(with: ["raw": trimmedContent], title: flashcardTitle)
+                    }
+                    DispatchQueue.main.async { prompt = "" }
                 } else {
-                    let responseStr = String(data: data, encoding: .utf8) ?? "No readable response"
-                    DispatchQueue.main.async {
-                        self.generationError = "Failed to parse response: \(responseStr)"
-                    }
+                    DispatchQueue.main.async { errorMessage = "Failed to parse response." }
                 }
             } catch {
                 DispatchQueue.main.async {
-                    self.generationError = "JSON parsing error: \(error.localizedDescription)"
+                    errorMessage = "JSON Error: \(error.localizedDescription)"
                 }
             }
         }.resume()
+    }
+    
+    func saveSet(with result: [String: Any], title: String) {
+        let db = Firestore.firestore()
+        var setData: [String: Any] = [
+            "title": title,
+            "dateCreated": FieldValue.serverTimestamp(),
+            "creatorId": Auth.auth().currentUser?.uid ?? "unknown"
+        ]
+        
+        if let cards = result["cards"] {
+            setData["cards"] = cards
+        } else if let raw = result["raw"] {
+            setData["raw"] = raw
+        }
+        
+        db.collection("flashcardSets").addDocument(data: setData) { error in
+            if let error = error {
+                print("Error saving to Firestore: \(error.localizedDescription)")
+            } else {
+                print("Flashcards saved successfully!")
+            }
+        }
+    }
+}
+
+struct FlashcardGeneratorView_Previews: PreviewProvider {
+    static var previews: some View {
+        FlashcardGeneratorView()
     }
 }

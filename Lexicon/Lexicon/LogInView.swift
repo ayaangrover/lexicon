@@ -14,7 +14,7 @@ struct LoginView: View {
                 TextField("Email", text: $email)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .autocapitalization(.none)  
+                    .autocapitalization(.none)
 
                 SecureField("Password", text: $password)
                     .padding()
@@ -33,24 +33,12 @@ struct LoginView: View {
                         .font(.headline)
                         .frame(maxWidth: .infinity)
                         .padding()
-                        .background(Color.black)
+                        .background(Color.appIcon)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
             }
             .padding(.horizontal, 40)
-
-            HStack {
-                Text("Don't have an account?")
-                    .font(.footnote)
-                Button(action: {
-                    navigateToAppView.toggle()
-                }) {
-                    Text("Sign up")
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                }
-            }
 
             if isLoading {
                 ProgressView("Loading...")
@@ -61,7 +49,7 @@ struct LoginView: View {
             Spacer()
         }
         .padding()
-        .background(Color.white)
+        .background(Color.appBackground.ignoresSafeArea())
         .fullScreenCover(isPresented: $navigateToAppView) {
             AppView()
         }
