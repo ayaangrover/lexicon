@@ -1,2 +1,32 @@
-# lexicon
-![Hackatime Badge](https://hackatime-badge.hackclub.com/U07C4TK524Q/lexicon?color=3FB79A) and ![Hackatime Badge](https://hackatime-badge.hackclub.com/U07C4TK524Q/%3C%3CLAST_PROJECT%3E%3E?color=3FB79A)
+# Lexicon
+
+Lexicon is an AI‑powered study companion that helps you create, import, share and study flashcards. It features:
+
+- Smart Flashcards with text‑to‑speech support.
+- AI‑generated flashcards via OpenAI.  
+- Quizlet set importer (Node + Puppeteer). 
+- Multiple learning modes: multiple choice & written. 
+- Built‑in AI Chat tutor. 
+- User auth & profile via Firebase Auth & Firestore.
+- Share & collaboration. 
+
+---
+
+## Installation / Testing the app
+
+### iOS App
+
+1. Clone the repo  
+2. Open `Lexicon.xcodeproj` in Xcode  
+3. Add your `GoogleService-Info.plist` to `Lexicon/Lexicon/Lexicon/GoogleService-Info.plist`  
+4. Install Firebase SDK via SPM if needed
+5. Build & run!
+
+### Server (Quizlet Import)
+
+```cd server
+npm install
+node main.js```
+
+
+![Hackatime Badge](https://hackatime-badge.hackclub.com/U07C4TK524Q/lexicon?color=3FB79A)
