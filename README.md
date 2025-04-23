@@ -24,9 +24,9 @@ Lexicon is an AI‑powered study companion that helps you create, import, share 
 
 ### Server (Quizlet Import)
 
-```cd server
+`cd server
 npm install
-node main.js```
+node main.js`
 
 
 ![Hackatime Badge](https://hackatime-badge.hackclub.com/U07C4TK524Q/lexicon?color=3FB79A)
