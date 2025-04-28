@@ -48,7 +48,7 @@ struct AppView: View {
                                 }
                                 
                                 NavigationLink(destination: ChatView()) {
-                                    FeatureButtonView(title: "Study with AI")
+                                    FeatureButtonView(title: "Learn with AI")
                                 }
                                 
                                 NavigationLink(destination: ManualFlashcardCreatorView()) {
@@ -56,7 +56,7 @@ struct AppView: View {
                                 }
                                 
                                 NavigationLink(destination: FlashcardGeneratorView()) {
-                                    FeatureButtonView(title: "Generate a Flashcard Set with AI")
+                                    FeatureButtonView(title: "Generate a Flashcard Set")
                                 }
                             }
                             .padding()
