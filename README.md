@@ -12,7 +12,11 @@ Lexicon is an AI‑powered study companion that helps you create, import, share 
 
 ---
 
-## Installation / Testing the app
+## Testing the app
+
+Just join the TestFlight at [https://testflight.apple.com/join/15cET7KM](https://testflight.apple.com/join/15cET7KM)!
+
+## Manual Build
 
 ### iOS App
 
