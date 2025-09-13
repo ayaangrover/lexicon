@@ -121,7 +121,7 @@ app.get('/status', (req, res) => {
 
 app.get('/quizlet-set/:setId', async (req, res) => {
     const setId = req.params.setId;
-    const url = `https:
+    const url = `https://quizlet.com/${setId}`;
     try {
         const data = await getQuizletSet(url);
         await delay(500);  
